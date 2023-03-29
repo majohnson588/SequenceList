@@ -45,7 +45,7 @@ void TestSList1()
 	SLTNode* pos = SListFind(plist, 4);
 	if (pos)
 	{
-		SListInsert(&plist, pos, 40);
+		SListErase(&plist, pos);
 	}
 	SListPrint(plist);
 }
