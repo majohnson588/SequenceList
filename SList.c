@@ -112,4 +112,68 @@ void SListInsert(SLTNode** pphead, SLTNode* pos, SLTDataType x)
 	{
 		SListPushFront(pphead, x);
 	}
+	else
+	{
+		SLTNode* prev = *pphead;
+		while (prev->next != pos)
+		{
+			prev = prev->next;
+		}
+
+		SLTNode* newnode = BuySListNode(x);
+		prev->next = newnode;
+		newnode->next = pos;
+	}
+}
+
+void SListErase(SLTNode** pphead, SLTNode* pos)
+{
+	assert(pphead);
+	assert(pos);
+
+	if (*pphead == pos)
+	{
+		SListPopFront(pphead);
+	}
+	else
+	{
+		SLTNode* prev = *pphead;
+		while (prev->next != pos)
+		{
+			prev = prev->next;
+		}
+
+		prev->next = pos->next;
+		free(pos);
+	}
+}
+
+void SListInsertAfter(SLTNode* pos, SLTDataType x)
+{
+	assert(pos);
+
+	//SLTNode* newnode = BuySlistNode(x);
+	//newnode->next = pos->next;
+	//pos->next = newnode;
+
+	//不在乎链表顺序
+	SLTNode* newnode = BuySListNode(x);
+	SLTNode* next = pos->next;
+	//将next作为tmp存起来
+	pos->next = newnode;
+	newnode->next = next;
+}
+
+void SListEraseAfter(SLTNode* pos)
+{
+	assert(pos);
+
+	if (pos->next == NULL)
+		return;
+
+	SLTNode* del = pos->next;
+	//pos->next = pos->next->next;代码没问题，但是没法释放
+	pos->next = del->next;
+	free(del);
+	del = NULL;
 }
