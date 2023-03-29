@@ -19,6 +19,12 @@ void SListPopFront(SLTNode** pphead);
 SLTNode* SListFind(SLTNode* phead, SLTDataType x);
 
 //在pos位置之前插入
-void SListInsert(SLTNode** pphead, SLTDataType x);
+void SListInsert(SLTNode** pphead,SLTNode* pos,SLTDataType x);
 //删除pos位置的值
-void SListErase(SLTNode** pphead, SLTDataType x);
+void SListErase(SLTNode** pphead, SLTNode* pos);
+
+//考虑在pos之后插入
+void SListInsertAfter(SLTNode* pos, SLTDataType x);
+
+//考虑删除pos后面的值
+void SListEraseAfter(SLTNode* pos);
