@@ -57,3 +57,22 @@ void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n)
 	}
 }
 
+找出链表倒数第k个元素的值
+struct ListNode* FindKthToTail(struct ListNode* pListHead, int k)
+{
+	struct ListNode* slow, * fast;
+	slow = fast = pListHead;
+	//fast先走k步
+	while (k--)
+	{
+		fast = fast->next;
+	}
+
+	while (fast)
+	{
+		slow = slow->next;
+		fast = fast->next;
+	}
+
+	return slow;
+}
