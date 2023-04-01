@@ -6,7 +6,7 @@ int removeElement(int* nums, int numSize, int val)
 	{
 		if(nums[src] != val)
 		{
-			nums[dst++] = nums[src++];2
+			nums[dst++] = nums[src++];
 		}
 		else
 		{
