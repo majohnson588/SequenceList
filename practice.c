@@ -76,3 +76,37 @@ struct ListNode* FindKthToTail(struct ListNode* pListHead, int k)
 
 	return slow;
 }
+
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2)
+{
+	struct ListNode* head, * tail;
+	//带哨兵位的头结点
+	head = tail = (struct ListNode*)malloc(sizeof(struct ListNode));
+	tail->next = NULL;
+
+	while (list1 && list2)
+	{
+		if (list1 && list2)
+		{
+			tail->next = list1;
+			tail = tail->next;
+
+			list1 = list1->next;
+		}
+		else
+		{
+			tail->next = list2;
+			tail = tail->next;
+
+			list2 = list2->next;
+		}
+	}
+	if (list1)
+		tail->next = list1;
+	if (list2)
+		tail->next = list2;
+
+	struct ListNode* list = head->next;
+	free(head);
+	return list;
+}
