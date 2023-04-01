@@ -77,6 +77,7 @@ struct ListNode* FindKthToTail(struct ListNode* pListHead, int k)
 	return slow;
 }
 
+//合并两个有序链表
 struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2)
 {
 	struct ListNode* head, * tail;
@@ -110,3 +111,41 @@ struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2)
 	free(head);
 	return list;
 }
+
+//链表分割（c++）
+class Partition {
+public:
+	ListNode* partition(ListNode* pHead, int x) {
+		struct ListNode* greaterhead, * greatertail, * lesshead, * lesstail;
+		greaterhead = greatertail = (struct ListNode*)malloc(sizeof(struct ListNode));
+		lessehead = lesstail = (struct ListNode*)malloc(sizeof(struct ListNode));
+		greatertail->next = NULL;
+		lesstail->next = NULL;
+
+		struct ListNode* cur = pHead;
+		while (cur)
+		{
+			if (cur->val < x)
+			{
+				lesstail->next = cur;
+				lesstail = lesstail->next;
+			}
+			else
+			{
+				greatertail->next = cur;
+				greatertail = greatertail->next;
+			}
+
+			cur = cur->next;
+		}
+
+		lesstail->next = greaterhead->next;
+		greatertail->next = NULL;
+
+		struct ListNode* head = lesshead->next;
+		free(greaterhead);
+		free(lesshead);
+
+		return head;
+	}
+};
