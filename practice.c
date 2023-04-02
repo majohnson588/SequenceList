@@ -191,3 +191,61 @@ struct ListNode* middleNode(struct ListNode* head) {
 //要求时间复杂度为O(N),空间复杂度为O(1)
 //1->2->3->2->1
 //1->2->2->1
+class PalindromeList {
+public:
+	struct ListNode* middleNode(struct ListNode* head) {
+		struct ListNode* slow, * fast;
+		slow = fast = head;
+		while (fast && fast->next)
+		{
+			slow = slow->next;
+			fast = fast->next->next;
+		}
+		return slow;
+	}
+	struct ListNode* reverseList(struct ListNode* head) {
+		if (head == NULL)
+			return NULL;
+
+		struct ListNode* n1, * n2, * n3;
+		n1 = NULL;
+		n2 = head;
+		n3 = n2->next;
+		while (n2)
+		{
+			//倒指向
+			n2->next = n1;
+
+			//迭代
+			n1 = n2;
+			n2 = n3;
+			if (n3)
+				n3 = n3->next;
+		}
+
+		return n1;
+	}
+	bool chkPalindrome(ListNode* A) {
+		struct ListNode* head = A;
+		struct ListNode* mid = middleNode(head);
+		struct ListNode* rHead = reverseList(mid);
+
+		while (head && rhead)
+		{
+			if (head->val != rhead->val)
+			{
+				return false;
+			}
+			else
+			{
+				head = head->next;
+				rhead = rhead->next;
+			}
+			
+	}
+
+		return true;
+
+}
+
+};
