@@ -295,3 +295,19 @@ struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* he
 
 	return shortList;
 }
+
+//环形链表
+//判断链表是否带环
+bool hasCycle(struct ListNode* head) {
+	struct ListNode* fast = head, * slow = head;
+	while (fast && fast->next)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+
+		if (slow == fast)
+			return true;
+	}
+
+	return false;
+}
