@@ -249,3 +249,49 @@ public:
 }
 
 };
+
+//链表相交
+struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* headB) {
+	struct ListNode* curA = headA, * curB = headB;
+	int lenA = 1, lenB = 1;
+	while (curA->next)
+	{
+		curA = curA->next;
+		lenA++;
+	}
+
+	while (curB->next)
+	{
+		curB = curB->next;
+		lenB++;
+	}
+
+	if (curA != curB)
+	{
+		return NULL;
+	}
+
+	//求第一个交点
+	struct ListNode* shortList = headA, *longList = headB;
+	if (lenA > lenB)
+	{
+		shortList = headB;
+		longList = headA;
+	}
+
+	int gap = abs(lenA - lenB);
+
+	//长的先走gap步
+	while (gap--)
+	{
+		longList = longlist->next;
+	}
+
+	while (shortList != longList)
+	{
+		shortList = shortList->next;
+		longList = longList->next;
+	}
+
+	return shortList;
+}
