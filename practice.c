@@ -340,7 +340,8 @@ N-6            N-6
 0<——追上相遇了  -1<——slow和fast距离是-1意味着，他们之间的距离变成了C-1
 若c-1为奇数，则永远追不上，反之则追得上。
 
-找出圆环起始结点
+找出圆环起始结点，若无圆环则返回空
+先得到推论：一个指针从meet开始走，一个指针从head开始走，他们会在圆环起始结点相遇
 bool detectCycle(struct ListNode* head) {
 	struct ListNode* fast = head, * slow = head;
 	while (fast && fast->next)
