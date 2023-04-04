@@ -311,3 +311,55 @@ bool hasCycle(struct ListNode* head) {
 
 	return false;
 }
+
+//为什么快指针每次走两步，慢指针走一步可以？证明一下
+//结论：一定可以追上
+
+//假设slow进环后，fast和slow的距离是N
+//这时fast真正开始追击slow，fast一次走两步，slow一次走1步，他们之间距离每次减少1
+//N
+//N-1
+//N-2
+//...
+//2
+//1
+//0 <——追上相遇了
+
+
+slow一次走1步，fast一次走3步？不一定能追上！
+假设slow进环后，fast跟slow的距离是N
+这时fast真正开始追击slow，fast一次走三步，slow一次走一步，他们。之间的距离每次缩小2
+偶数           奇数
+N              N
+N-2            N-2
+N-4            N-4
+N-6            N-6
+...            ...
+4              3
+2              1                               假设C是环的大小
+0<——追上相遇了  -1<——slow和fast距离是-1意味着，他们之间的距离变成了C-1
+若c-1为奇数，则永远追不上，反之则追得上。
+
+找出圆环起始结点
+bool detectCycle(struct ListNode* head) {
+	struct ListNode* fast = head, * slow = head;
+	while (fast && fast->next)
+	{
+		slow = slow->next;
+		fast = fast->next->next; 
+
+		if (slow == fast)
+		{
+			struct ListNode* meet = slow;
+			while (meet != head)
+			{
+				meet = meet->next;
+				head = head->next;
+			}
+
+			return meet;
+		}
+	}
+
+	return NULL;
+}
