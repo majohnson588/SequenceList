@@ -1,43 +1,28 @@
-#include "List.h"
+#pragma once
+#include <stdio.h>
+#include <assert.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
-void TestList1()
+typedef int LTDataType;
+typedef struct ListNode
 {
-	//LTNode* plist = NULL;
-	//ListInit(&plist);
-	LTNode* plist = ListInit();
-	ListPushBack(plist, 1);
-	ListPushBack(plist, 2);
-	ListPushBack(plist, 3);
-	ListPushBack(plist, 4);
-	ListPrint(plist);
-}
+	struct ListNode* next;
+	struct ListNode* prev;
+	LTDataType data;
+}LTNode;
 
-void TestList2()
-{
-	//LTNode* plist = NULL;
-	//ListInit(&plist);
-	LTNode* plist = ListInit();
-	ListPushFront(plist, 1);
-	ListPushFront(plist, 2);
-	ListPushFront(plist, 3);
-	ListPushFront(plist, 4);
-	ListPrint(plist);
-
-	ListPopBack(plist);
-	ListPrint(plist);
-	ListPopBack(plist);
-	ListPrint(plist);
-	ListPopBack(plist);
-	ListPrint(plist);
-	ListPopBack(plist);
-	ListPrint(plist);
-	//ListPopBack(plist);
-	//ListPrint(plist);
-}
-
-int main()
-{
-	TestList2();
-
-	return 0;
-}
+//void ListInit(LTNode** pphead)
+LTNode* ListInit();
+void ListPrint(LTNode* phead);
+void ListPushBack(LTNode* phead, LTDataType x);
+void ListPushFront(LTNode* phead, LTDataType x);
+void ListPopBack(LTNode* phead);
+void ListPopFront(LTNode* phead);
+bool ListEmpty(LTNode* phead);
+//在pos位置之前插入x
+void ListInsert(LTNode* pos, LTDataType x);
+//删除pos位置的结点
+void ListErase(LTNode* pos);
+int ListSize(LTNode* phead);
+void ListDestory(LTNode* phead);
