@@ -25,4 +25,4 @@ void ListInsert(LTNode* pos, LTDataType x);
 //删除pos位置的结点
 void ListErase(LTNode* pos);
 int ListSize(LTNode* phead);
-void ListDestory(LTNode* phead);
+void ListDestroy(LTNode* phead);
