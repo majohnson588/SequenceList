@@ -364,3 +364,55 @@ bool detectCycle(struct ListNode* head) {
 
 	return NULL;
 }
+
+//复制带随机指针的链表
+struct Node* copyRandomList(struct Node* head)
+{
+	//1、
+	struct Node* cur = head;
+	while (cur)
+	{
+		struct Node* copy = (struct Node*)malloc(sizeof(struct Node));
+		copy->val = cur->val;
+
+		copy->next = cur->next;
+		cur->next = copy;
+	}
+
+	//2、
+	cur = head;
+	while (cur)
+	{
+		struct Node* copy = cur->next;
+		if (cur->random == NULL)
+			copy->random = NULL;
+		else
+			copy->random = cur->random->next;
+
+		cur = copy->next;
+	}
+
+	//3、
+	cur = head;
+	struct Node* copyHead = NULL, * copyTail = NULL;
+	while (cur)
+	{
+		struct Node* copy = cur->next;
+		struct Node* next = copy->next;
+
+		if (copyTail == NULL)
+		{
+			copyHead = copyTail = copy;
+		}
+		else
+		{
+			copyTail->next = copy;
+			copyTail = copyTail->next;
+		}
+
+		cur->next = next;
+		cur = next;
+	}
+
+	return copyHead;
+}
