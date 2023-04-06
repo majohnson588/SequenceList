@@ -132,7 +132,7 @@ int ListSize(LTNode* phead)
 	return size;
 }
 
-void ListDestory(LTNode* phead)
+void ListDestroy(LTNode* phead)
 {
 	assert(phead);
 	LTNode* cur = phead->next;
