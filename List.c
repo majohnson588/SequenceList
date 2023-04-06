@@ -115,4 +115,35 @@ void ListPopFront(LTNode* phead)
 	assert(phead);
 	assert(!ListEmpty(phead));
 
+	ListErase(phead);
+}
+
+int ListSize(LTNode* phead)
+{
+	assert(phead);
+	LTNode* cur = phead->next;
+	int size = 0;
+	while (cur != phead)
+	{
+		++size;
+		cur = cur->next;
+	}
+
+	return size;
+}
+
+void ListDestory(LTNode* phead)
+{
+	assert(phead);
+	LTNode* cur = phead->next;
+	int size = 0;
+	while (cur != head)
+	{
+		LTNode* next = cur->next;
+		ListErase(cur);
+		cur = next;
+	}
+
+	free(phead);
+	phead = NULL;
 }
